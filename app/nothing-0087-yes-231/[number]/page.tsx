@@ -9,8 +9,8 @@ export default async function AdminPage({
   const { number } = await params;
   
   // Get environment variables
-  const localNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_LOCAL;
-  const internationalNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_INTERNATIONAL;
+  const localNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_LOCAL || "doulun";
+  const internationalNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_INTERNATIONAL || "doulun";
   
   // Check if environment variables are set
   if (!localNumber || !internationalNumber) {
