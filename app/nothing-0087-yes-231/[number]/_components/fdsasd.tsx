@@ -20,19 +20,28 @@ export function ADSASAD() {
     if (savedNumbers) {
       setNumbers(JSON.parse(savedNumbers));
     } else {
+      // Check if environment variables are set
+      const localNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_LOCAL;
+      const internationalNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_INTERNATIONAL;
+      
+      if (!localNumber || !internationalNumber) {
+        throw new Error("WhatsApp numbers are not properly configured in environment variables");
+      }
+      
       // Default numbers if none exist
       const defaultNumbers: WhatsAppNumber[] = [
         {
           id: "1",
-          number: String(
-            process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ||
-              process.env.WHATSAPP_NUMBER,
-          ),
-          label: "Support Principal",
+          number: localNumber,
+          label: "Support Local (Cameroon)",
           isActive: true,
         },
-        { id: "2", number: "", label: "Support Secondaire", isActive: false },
-        { id: "3", number: "", label: "Support Tertiaire", isActive: false },
+        {
+          id: "2",
+          number: internationalNumber,
+          label: "Support International (France)",
+          isActive: true,
+        },
       ];
       setNumbers(defaultNumbers);
       localStorage.setItem("whatsapp-numbers", JSON.stringify(defaultNumbers));
@@ -48,7 +57,7 @@ export function ADSASAD() {
 
   // Add new number
   const addNumber = () => {
-    if (newNumber.number && newNumber.label && numbers.length < 3) {
+    if (newNumber.number && newNumber.label && numbers.length < 2) {
       const newId = Date.now().toString();
       const updatedNumbers = [
         ...numbers,
@@ -193,7 +202,7 @@ export function ADSASAD() {
           <div className="space-y-4">
             <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
               <h3 className="font-medium text-blue-300 mb-2">
-                Numéros Actifs ({activeNumbers.length}/3)
+                Numéros Actifs ({activeNumbers.length}/2)
               </h3>
               {activeNumbers.length > 0 ? (
                 <ul className="space-y-2">

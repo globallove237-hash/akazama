@@ -7,17 +7,24 @@ export default async function AdminPage({
   params: Promise<{ number: string }>;
 }) {
   const { number } = await params;
-  if (
-    number !== process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ||
-    number !== process.env.WHATSAPP_NUMBER
-  )
+  
+  // Get environment variables
+  const localNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_LOCAL;
+  const internationalNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_INTERNATIONAL;
+  
+  // Check if environment variables are set
+  if (!localNumber || !internationalNumber) {
+    throw new Error("WhatsApp numbers are not properly configured in environment variables");
+  }
+  
+  // Check if the provided number matches either the local or international number
+  if (number !== localNumber && number !== internationalNumber) {
     return (
       <>
-        {process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
-        non
-        {number}
+        Invalid number. Expected {localNumber} or {internationalNumber}, got {number}
       </>
     );
+  }
 
   return <ADSASAD />;
 }
