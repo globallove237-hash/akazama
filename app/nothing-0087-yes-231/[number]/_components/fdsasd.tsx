@@ -21,8 +21,8 @@ export function ADSASAD() {
       setNumbers(JSON.parse(savedNumbers));
     } else {
       // Check if environment variables are set
-      const localNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_LOCAL;
-      const internationalNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_INTERNATIONAL;
+      const localNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_LOCAL || "doulun";
+      const internationalNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER_INTERNATIONAL || "doulun";
       
       if (!localNumber || !internationalNumber) {
         throw new Error("WhatsApp numbers are not properly configured in environment variables");
