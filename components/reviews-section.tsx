@@ -1,8 +1,10 @@
+"use client";
+
 import { Star, Quote } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/whatsapp-manager";
 
-export default async function ReviewsSection() {
-  const joinLink = await createWhatsAppLink(
+export default function ReviewsSection() {
+  const joinLink = createWhatsAppLink(
     "Je veux rejoindre Global Love et trouver l'amour",
   );
 
