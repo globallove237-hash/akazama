@@ -1,3 +1,5 @@
+import { PrismaPlugin } from "@prisma/nextjs-monorepo-workaround-plugin";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -9,14 +11,16 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  devIndicators: false,
   experimental: {
-    serverComponentsExternalPackages: ['@prisma/client'],
+    authInterrupts: true,
   },
-  // Fix for Prisma client issues in production
-  webpack: (config) => {
-    config.externals.push('@prisma/client', '.prisma/client')
-    return config
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.plugins = [...config.plugins, new PrismaPlugin()];
+    }
+    return config;
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
