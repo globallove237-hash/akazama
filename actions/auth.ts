@@ -1,9 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { PrismaClient } from "@/lib/generated/prisma";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 async function getAuthenticatedUser() {
   try {

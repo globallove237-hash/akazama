@@ -1,9 +1,7 @@
 "use server";
 
-import { PrismaClient } from "@/lib/generated/prisma";
+import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
-
-const prisma = new PrismaClient();
 
 export async function verifyWaitingListEntry(whatsapp: string) {
   try {

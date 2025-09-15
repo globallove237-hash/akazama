@@ -1,7 +1,5 @@
-import { PrismaClient } from "@/lib/generated/prisma";
+import { prisma } from "@/lib/prisma";
 import AdminPaymentClientPage from "./client-page";
-
-const prisma = new PrismaClient();
 
 export default async function AdminPaymentPage() {
   const payments = await prisma.payment.findMany({

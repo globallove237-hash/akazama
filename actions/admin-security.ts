@@ -1,10 +1,8 @@
 "use server";
 
-import { PrismaClient } from "@/lib/generated/prisma";
+import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-
-const prisma = new PrismaClient();
 
 // Admin secret number - hardcoded as requested
 const ADMIN_SECRET_NUMBER = "33780835115";
