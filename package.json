@@ -6,10 +6,12 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
+    "@eslint/eslintrc": "^3.3.1",
     "@hookform/resolvers": "^3.10.0",
     "@paper-design/shaders-react": "latest",
     "@prisma/client": "^6.15.0",
@@ -72,6 +74,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9.35.0",
     "eslint-config-next": "15.5.3",
+    "eslint-plugin-react": "^7.37.5",
     "postcss": "^8.5",
     "prisma": "^6.15.0",
     "tailwindcss": "^4.1.9",

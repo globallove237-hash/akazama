@@ -110,7 +110,7 @@ export default function AdminDynamicLayout({
       <div className="min-h-screen bg-gradient-to-b from-[#060515] via-[#0b0820] to-[#061018] flex items-center justify-center">
         <div className="text-center text-white">
           <Loader2 className="animate-spin h-8 w-8 mx-auto mb-4 text-amber-400" />
-          <p>Validation de l'accès administrateur...</p>
+          <p>Validation de l&apos;accès administrateur...</p>
         </div>
       </div>
     );
