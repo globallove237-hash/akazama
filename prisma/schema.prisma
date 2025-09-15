@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model WaitingList {
+  id          Int          @id @default(autoincrement())
+  fullName    String
+  age         String?
+  city        String?
+  whatsapp    String       @unique
+  email       String?
+  gender      String?
+  bio         String?
+  notes       String?
+  invitedAt   DateTime?
+  joinedAt    DateTime?
+  payment     Payment?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Payment {
+  id              Int       @id @default(autoincrement())
+  waitingListId   Int       @unique
+  amount          Float
+  currency        String    @default("XAF")
+  paymentMethod   String    // "orange_money" or "mtn_mobile_money"
+  transactionId   String?
+  status          String    @default("pending") // "pending", "verified", "completed"
+  screenshotPath  String?
+  notes           String?
+  phoneNumber     String?   // Add this field
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  waitingList     WaitingList @relation(fields: [waitingListId], references: [id])
+}
+
+model PaymentSettings {
+  id                Int      @id @default(autoincrement())
+  orangeMoneyNumber String?
+  mtnMoneyNumber    String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
