@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { Star, Quote } from "lucide-react"
-import { createWhatsAppLink } from "@/lib/whatsapp-manager"
+import { Star, Quote } from "lucide-react";
+import { createWhatsAppLink } from "@/lib/whatsapp-manager";
 
 export default function ReviewsSection() {
-  const joinLink = createWhatsAppLink("Je veux rejoindre Global Love et trouver l'amour")
+  const joinLink = "/condition";
 
   const reviews = [
     {
@@ -39,17 +39,19 @@ export default function ReviewsSection() {
       text: "Global Love a changé ma vision des rencontres en ligne. Des profils vérifiés et des connexions authentiques.",
       relationship: "Marié",
     },
-  ]
+  ];
 
   return (
     <section className="py-12 md:py-16 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-white mb-4">
-            Ils ont trouvé l'amour avec <span className="font-medium italic">Global Love</span>
+            Ils ont trouvé l'amour avec{" "}
+            <span className="font-medium italic">Global Love</span>
           </h2>
           <p className="text-white/70 text-sm md:text-base max-w-2xl mx-auto px-4">
-            Découvrez les témoignages de nos membres qui ont trouvé des relations authentiques et durables
+            Découvrez les témoignages de nos membres qui ont trouvé des
+            relations authentiques et durables
           </p>
         </div>
 
@@ -62,19 +64,26 @@ export default function ReviewsSection() {
               <div className="flex items-center mb-4">
                 <div className="flex">
                   {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                    <Star
+                      key={i}
+                      className="w-4 h-4 text-yellow-400 fill-current"
+                    />
                   ))}
                 </div>
               </div>
 
               <Quote className="w-5 md:w-6 h-5 md:h-6 text-white/30 mb-3" />
 
-              <p className="text-white/80 text-sm leading-relaxed mb-4">{review.text}</p>
+              <p className="text-white/80 text-sm leading-relaxed mb-4">
+                {review.text}
+              </p>
 
               <div className="border-t border-white/10 pt-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h4 className="text-white font-medium text-sm">{review.name}</h4>
+                    <h4 className="text-white font-medium text-sm">
+                      {review.name}
+                    </h4>
                     <p className="text-white/60 text-xs">
                       {review.age} ans, {review.city}
                     </p>
@@ -102,5 +111,5 @@ export default function ReviewsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
