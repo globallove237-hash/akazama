@@ -153,8 +153,8 @@ A propos: ${form.bio || "--"}`
         return;
       }
       
-      // Import the verification action
-      const { verifyWaitingListEntry } = await import("@/actions/verify-waiting-list");
+      // Import the verification action - using production version
+      const { verifyWaitingListEntry } = await import("@/actions/verify-waiting-list-production");
       
       // Call the verification action
       const result = await verifyWaitingListEntry(whatsappVerification);
@@ -167,7 +167,7 @@ A propos: ${form.bio || "--"}`
       }
     } catch (err) {
       console.error("Error during verification:", err);
-      setVerificationError("Erreur lors de la vérification");
+      setVerificationError("Service temporairement indisponible. Veuillez réessayer plus tard.");
     } finally {
       setVerificationLoading(false);
     }
