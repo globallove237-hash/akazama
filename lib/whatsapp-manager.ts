@@ -36,5 +36,5 @@ export function getRandomWhatsAppNumber(): string {
 export function createWhatsAppLink(message: string): string {
   const number = getRandomWhatsAppNumber();
   const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/237699697239?text=${encodedMessage}`;
+  return `https://wa.me/+237699697239?text=${encodedMessage}`;
 }
